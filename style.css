@@ -1,0 +1,703 @@
+/* MSI Design System - Gaming Mode (Red on Black)
+   Strict adherence to 2025 MSI Corporate Identity Guidelines
+   Color: MSI Red #FF0000 on Pure Black #000000
+   Typography: Inter - clean, technical, engineered aesthetic
+   Elevation: No shadows, color contrast and borders only
+   Radius: 2px sharp corners on all chrome (technical, not ornamental)
+*/
+
+:root {
+    /* MSI Core Colors */
+    --msi-red: #FF0000;
+    --msi-black: #000000;
+    --msi-white: #FFFFFF;
+
+    /* Dark Theme (Gaming Mode) */
+    --bg-primary: #000000;
+    --bg-secondary: #111111;
+    --bg-tertiary: #1A1A1A;
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.60);
+    --text-muted: rgba(255, 255, 255, 0.40);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-active: rgba(255, 255, 255, 0.15);
+    --surface-dark: #111111;
+    --surface-card: #1A1A1A;
+
+    /* Transitions */
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light Theme */
+html[data-theme="light"] {
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F8F9FA;
+    --bg-tertiary: #F0F2F5;
+    --text-primary: #000000;
+    --text-secondary: rgba(0, 0, 0, 0.60);
+    --text-muted: rgba(0, 0, 0, 0.40);
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    --border-active: rgba(0, 0, 0, 0.15);
+    --surface-dark: #F8F9FA;
+    --surface-card: #FFFFFF;
+}
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: var(--transition);
+}
+
+/* Container & Layout */
+.dashboard-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* ========== HEADER ========== */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 1.5rem;
+    gap: 1.5rem;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+}
+
+.header-logo {
+    width: 13.5rem;
+    height: 6.75rem;
+    background-color: transparent;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--msi-black);
+    flex-shrink: 0;
+    border: none;
+}
+
+.msi-logo-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.header-title {
+    margin-left: 1rem;
+}
+
+.dashboard-header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+}
+
+.dashboard-header .subtitle {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-top: 0.125rem;
+}
+
+.header-right {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-end;
+}
+
+.date-badge {
+    background-color: transparent;
+    border: 1px solid var(--border-subtle);
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.theme-toggle-group {
+    display: flex;
+    background-color: transparent;
+    border: 1px solid var(--border-subtle);
+    border-radius: 2px;
+    gap: 0;
+    overflow: hidden;
+}
+
+.theme-btn {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text-secondary);
+    padding: 0.4rem 0.6rem;
+    border-right: 1px solid var(--border-subtle);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-btn:last-child {
+    border-right: none;
+}
+
+.theme-btn:hover {
+    color: var(--text-primary);
+    background-color: var(--surface-dark);
+}
+
+.theme-btn.active {
+    background-color: var(--msi-red);
+    color: var(--msi-black);
+    border-right-color: var(--msi-red);
+}
+
+/* ========== SECTION TITLES ========== */
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.section-title i {
+    color: var(--msi-red);
+    font-size: 1.25rem;
+}
+
+/* ========== SCOREBOARD GRID & CARDS ========== */
+.scoreboard-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.scoreboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.score-card {
+    position: relative;
+    background-color: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 2px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.score-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+}
+
+.score-card:hover {
+    border-color: var(--msi-red);
+}
+
+.score-card:hover::before {
+    background-color: var(--msi-red);
+}
+
+/* Card Type Colors */
+.card-review::before {
+    background-color: var(--msi-red);
+}
+.card-news::before {
+    background-color: var(--msi-red);
+}
+.card-youtube::before {
+    background-color: var(--msi-red);
+}
+
+/* Card Inner Content */
+.card-inner {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: relative;
+    z-index: 2;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.group-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-primary);
+}
+
+.group-label i {
+    color: var(--msi-red);
+}
+
+.icon-wrap {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 2px;
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.metric-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.metric-value {
+    font-size: 3.9rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--msi-red);
+}
+
+.metric-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 0.75rem;
+}
+
+.card-footer .trend {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/* ========== PARAMETER CONTROL ========== */
+.parameter-control {
+    background-color: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 2px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.param-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 120px;
+}
+
+.param-label span:first-child {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.02em;
+}
+
+.param-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--msi-red);
+}
+
+.param-slider {
+    flex: 1;
+    height: 6px;
+    border-radius: 2px;
+    background: var(--border-subtle);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.param-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    background: var(--msi-red);
+    cursor: pointer;
+    border: 2px solid var(--bg-primary);
+    transition: var(--transition);
+}
+
+.param-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+}
+
+.param-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    background: var(--msi-red);
+    cursor: pointer;
+    border: 2px solid var(--bg-primary);
+    transition: var(--transition);
+}
+
+.param-slider::-moz-range-thumb:hover {
+    transform: scale(1.15);
+}
+
+.param-range-labels {
+    display: flex;
+    justify-content: space-between;
+    min-width: 60px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    gap: 0.5rem;
+}
+
+/* ========== VISUALIZATIONS SECTION ========== */
+.visuals-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.visuals-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.visuals-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.visuals-title h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: var(--text-primary);
+}
+
+.visuals-title i {
+    font-size: 1.25rem;
+    color: var(--msi-red);
+}
+
+.visuals-title .divider {
+    width: 1px;
+    height: 1.5rem;
+    background-color: var(--border-subtle);
+}
+
+.selected-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.375rem 0.75rem;
+    border-radius: 2px;
+    background-color: transparent;
+    border: 1px solid var(--msi-red);
+    color: var(--msi-red);
+    letter-spacing: 0.02em;
+}
+
+/* ========== GROUP SELECTOR ========== */
+.group-selector {
+    display: flex;
+    background-color: transparent;
+    border: 1px solid var(--border-subtle);
+    border-radius: 2px;
+    gap: 0;
+    overflow: hidden;
+}
+
+.selector-btn {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    border-right: 1px solid var(--border-subtle);
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+    letter-spacing: 0.005em;
+}
+
+.selector-btn:last-child {
+    border-right: none;
+}
+
+.selector-btn:hover {
+    color: var(--text-primary);
+    background-color: var(--surface-dark);
+}
+
+.selector-btn.active {
+    background-color: var(--msi-red);
+    color: var(--msi-black);
+    border-right-color: var(--msi-red);
+}
+
+.selector-btn.active:last-child {
+    border-right-color: var(--msi-red);
+}
+
+/* ========== CHARTS GRID ========== */
+.charts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.chart-container {
+    background-color: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 2px;
+    padding: 1.5rem;
+    transition: var(--transition);
+}
+
+.chart-container:hover {
+    border-color: var(--border-active);
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+    gap: 1rem;
+}
+
+.chart-title-wrap {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.chart-title-wrap i {
+    font-size: 1.1rem;
+    color: var(--msi-red);
+    margin-top: 0.125rem;
+    flex-shrink: 0;
+}
+
+.chart-title-wrap h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: var(--text-primary);
+}
+
+.chart-title-wrap p {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+    line-height: 1.4;
+}
+
+.chart-actions {
+    flex-shrink: 0;
+}
+
+.action-badge {
+    background-color: transparent;
+    border: 1px solid var(--border-subtle);
+    padding: 0.375rem 0.75rem;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.chart-body {
+    width: 100%;
+    min-height: 380px;
+    position: relative;
+}
+
+.apex-chart-element {
+    width: 100%;
+    height: 100%;
+}
+
+/* ========== APEXCHARTS CUSTOMIZATION ========== */
+.apexcharts-tooltip {
+    background: var(--surface-dark) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: 2px !important;
+    box-shadow: none !important;
+}
+
+.apexcharts-tooltip-title {
+    background: transparent !important;
+    border: none !important;
+    color: var(--text-primary) !important;
+    font-weight: 600 !important;
+    font-size: 0.875rem !important;
+    padding: 0.25rem 0.5rem !important;
+}
+
+.apexcharts-tooltip-series-group {
+    padding: 0.5rem 0.75rem !important;
+}
+
+.apexcharts-tooltip-y-group {
+    padding: 0.25rem 0 !important;
+}
+
+.apexcharts-text {
+    fill: var(--text-secondary) !important;
+}
+
+.apexcharts-xaxis-label {
+    fill: var(--text-secondary) !important;
+}
+
+.apexcharts-yaxis-label {
+    fill: var(--text-secondary) !important;
+}
+
+.apexcharts-grid-line {
+    stroke: var(--border-subtle) !important;
+}
+
+.apexcharts-bar-area {
+    cursor: pointer;
+}
+
+.apexcharts-bar-area:hover {
+    filter: brightness(1.1);
+}
+
+/* ========== FOOTER ========== */
+.dashboard-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.01em;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-right {
+        width: 100%;
+    }
+
+    .visuals-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .group-selector {
+        width: 100%;
+    }
+
+    .selector-btn {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .scoreboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
