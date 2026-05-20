@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MSI x Zapier 數據分析儀表板</title>
+    <title>Zapier-Automated Media Releases Hub</title>
     <!-- Google Fonts: Outfit & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <!-- FontAwesome for Premium Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- ApexCharts CDN -->
@@ -15,18 +18,20 @@
     <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="dashboard-container">
-        
+
         <!-- Header Section -->
         <header class="dashboard-header">
             <div class="header-left">
                 <div class="header-logo">
-                    <img src="https://logolook.net/wp-content/uploads/2023/10/MSI-Logo.png" alt="MSI Logo" class="msi-logo-img">
+                    <img src="https://logolook.net/wp-content/uploads/2023/10/MSI-Logo.png" alt="MSI Logo"
+                        class="msi-logo-img">
                 </div>
                 <div class="header-title">
-                    <h1>MSI x Zapier 數據分析儀表板</h1>
-                    <p class="subtitle">即時展示 Reviews、News 與 YouTube 的媒體及時間軸多維度數據</p>
+                    <h1>Zapier-Automated Media Releases Hub</h1>
+                    <p class="subtitle">Instant cross-media tracking powered by automated RSS feeds and YouTube API integrations</p>
                 </div>
             </div>
             <div class="header-right">
@@ -35,10 +40,11 @@
                     <span id="current-date">2026-05-20</span>
                 </div>
                 <div class="theme-toggle-group">
-                    <button class="theme-btn active" onclick="setTheme('light')" id="btn-light-theme" title="淺色主題">
+                    <button class="theme-btn active" onclick="setTheme('light')" id="btn-light-theme"
+                        title="Light Theme">
                         <i class="fa-solid fa-sun"></i>
                     </button>
-                    <button class="theme-btn" onclick="setTheme('dark')" id="btn-dark-theme" title="深色主題">
+                    <button class="theme-btn" onclick="setTheme('dark')" id="btn-dark-theme" title="Dark Theme">
                         <i class="fa-solid fa-moon"></i>
                     </button>
                 </div>
@@ -47,9 +53,33 @@
 
         <!-- 1. Scoreboard Grid Section -->
         <section class="scoreboard-section">
-            <h2 class="section-title"><i class="fa-solid fa-rectangle-list"></i> 數據統計指標 (Scoreboard)</h2>
+            <h2 class="section-title"><i class="fa-solid fa-rectangle-list"></i> Key Performance Indicators
+            </h2>
             <div class="scoreboard-grid">
-                
+
+                <!-- Overall Card -->
+                <div class="score-card card-overall" onclick="selectGroup('Overall')">
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <div class="card-header">
+                            <span class="group-label"><i class="fa-solid fa-earth-americas"></i> Overall</span>
+                            <div class="icon-wrap"><i class="fa-solid fa-chart-pie"></i></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="metric-row">
+                                <div class="metric">
+                                    <span class="metric-value" id="overall-distinct-media">0</span>
+                                    <span class="metric-label">Distinct Media</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value" id="overall-total-count">0</span>
+                                    <span class="metric-label">Captured Releases</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Review Card -->
                 <div class="score-card card-review" onclick="selectGroup('Review')">
                     <div class="card-glow"></div>
@@ -62,16 +92,13 @@
                             <div class="metric-row">
                                 <div class="metric">
                                     <span class="metric-value" id="review-distinct-media">0</span>
-                                    <span class="metric-label">不重複媒體 (Distinct)</span>
+                                    <span class="metric-label">Distinct Media</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-value" id="review-total-count">0</span>
-                                    <span class="metric-label">數據總量 (Total Count)</span>
+                                    <span class="metric-label">Captured Releases</span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <span class="trend"><i class="fa-solid fa-globe"></i> 包含完整國家維度</span>
                         </div>
                     </div>
                 </div>
@@ -88,16 +115,13 @@
                             <div class="metric-row">
                                 <div class="metric">
                                     <span class="metric-value" id="news-distinct-media">0</span>
-                                    <span class="metric-label">不重複媒體 (Distinct)</span>
+                                    <span class="metric-label">Distinct Media</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-value" id="news-total-count">0</span>
-                                    <span class="metric-label">數據總量 (Total Count)</span>
+                                    <span class="metric-label">Captured Releases</span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <span class="trend"><i class="fa-solid fa-circle-info"></i> 電子報與網路媒體</span>
                         </div>
                     </div>
                 </div>
@@ -114,16 +138,13 @@
                             <div class="metric-row">
                                 <div class="metric">
                                     <span class="metric-value" id="youtube-distinct-media">0</span>
-                                    <span class="metric-label">不重複頻道 (Distinct)</span>
+                                    <span class="metric-label">Distinct Channels</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-value" id="youtube-total-count">0</span>
-                                    <span class="metric-label">影片總數 (Total Count)</span>
+                                    <span class="metric-label">Total Videos</span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <span class="trend"><i class="fa-solid fa-play"></i> 影音頻道數據</span>
                         </div>
                     </div>
                 </div>
@@ -133,16 +154,19 @@
 
         <!-- Main Interactive Visualizations -->
         <main class="visuals-section">
-            
+
             <div class="visuals-header">
                 <div class="visuals-title">
                     <i class="fa-solid fa-chart-column"></i>
-                    <h2>數據交互圖表</h2>
+                    <h2>Interactive Visualizations</h2>
                     <span class="divider"></span>
-                    <span class="selected-badge" id="selected-group-badge">當前選擇：Reviews</span>
+                    <span class="selected-badge" id="selected-group-badge">Current Selection: Overall</span>
                 </div>
                 <div class="group-selector">
-                    <button class="selector-btn active" onclick="selectGroup('Review')" id="btn-Review">
+                    <button class="selector-btn active" onclick="selectGroup('Overall')" id="btn-Overall">
+                        <i class="fa-solid fa-earth-americas"></i> Overall
+                    </button>
+                    <button class="selector-btn" onclick="selectGroup('Review')" id="btn-Review">
                         <i class="fa-solid fa-star"></i> Reviews
                     </button>
                     <button class="selector-btn" onclick="selectGroup('News')" id="btn-News">
@@ -157,14 +181,10 @@
             <!-- Bar Chart Parameter Control -->
             <div class="parameter-control">
                 <div class="param-label">
-                    <span>頂級媒體數量</span>
+                    <span>Top Media Limit</span>
                     <span class="param-value" id="param-display">15</span>
                 </div>
                 <input type="range" id="top-n-slider" class="param-slider" min="5" max="50" value="15" step="1">
-                <div class="param-range-labels">
-                    <span>5</span>
-                    <span>50</span>
-                </div>
             </div>
 
             <div class="charts-grid">
@@ -175,12 +195,12 @@
                         <div class="chart-title-wrap">
                             <i class="fa-solid fa-chart-bar"></i>
                             <div>
-                                <h3>媒體數據排行 (Bar Chart)</h3>
-                                <p>以數據量降序排列展示頂級媒體來源 (點擊媒體查看時間趨勢)</p>
+                                <h3>Media Distribution (Bar Chart)</h3>
+                                <p>Ranked media sources by volume (Click bars to filter line chart)</p>
                             </div>
                         </div>
                         <div class="chart-actions">
-                            <span class="action-badge" id="bar-chart-total-media">30 媒體</span>
+                            <span class="action-badge" id="bar-chart-total-media">0 Media Sources</span>
                         </div>
                     </div>
                     <div class="chart-body">
@@ -194,8 +214,8 @@
                         <div class="chart-title-wrap">
                             <i class="fa-solid fa-chart-line"></i>
                             <div>
-                                <h3>發布時間趨勢 (Line Chart)</h3>
-                                <p id="line-chart-desc">按發布月份統計每月的發布總量走勢</p>
+                                <h3>Publishing Trends over Time (Line Chart)</h3>
+                                <p id="line-chart-desc">Monthly publishing trends by volume</p>
                             </div>
                         </div>
                         <div class="chart-actions">
@@ -210,9 +230,10 @@
             </div>
 
         </main>
-        
+
         <footer class="dashboard-footer">
-            <p>© 2026 Zapier Data Analysis Center. All rights reserved. 設計與開發由 Antigravity 團隊提供。</p>
+            <p>© 2026 Zapier Data Analysis Center. All rights reserved. Designed and developed by the Antigravity Team.
+            </p>
         </footer>
 
     </div>
@@ -222,4 +243,5 @@
     <!-- Dashboard Core Logic -->
     <script src="app.js"></script>
 </body>
+
 </html>
