@@ -116,14 +116,14 @@ body {
 }
 
 .dashboard-header h1 {
-    font-size: 1.75rem;
+    font-size: 1.875rem; /* Increased by 2px from 1.75rem (28px to 30px) */
     font-weight: 700;
     letter-spacing: -0.01em;
     color: var(--text-primary);
 }
 
 .dashboard-header .subtitle {
-    font-size: 0.875rem;
+    font-size: 1rem; /* Increased by 2px from 0.875rem (14px to 16px) */
     color: var(--text-secondary);
     margin-top: 0.125rem;
 }
@@ -208,6 +208,7 @@ body {
 .scoreboard-section {
     display: flex;
     flex-direction: column;
+    margin-bottom: 2.5rem; /* Generous breathing room below scoreboard cards */
 }
 
 .scoreboard-grid {
@@ -244,14 +245,11 @@ body {
 }
 
 /* Card Type Colors */
-.card-review::before {
-    background-color: var(--msi-red);
-}
-.card-news::before {
-    background-color: var(--msi-red);
-}
+.card-overall::before,
+.card-review::before,
+.card-news::before,
 .card-youtube::before {
-    background-color: var(--msi-red);
+    background-color: #FF0000; /* Unified MSI Red theme */
 }
 
 /* Card Inner Content */
@@ -272,7 +270,7 @@ body {
 }
 
 .group-label {
-    font-size: 1.1rem;
+    font-size: 1.35rem; /* Increased by another 2px from 1.225rem (approx 22px) */
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -315,18 +313,21 @@ body {
     gap: 0.25rem;
 }
 
-.metric-value {
-    font-size: 3.9rem;
+.metric-value,
+.card-review .metric-value,
+.card-news .metric-value,
+.card-youtube .metric-value {
+    font-size: 2.8rem; /* Decreased by 5px from 3.12rem */
     font-weight: 700;
     letter-spacing: -0.01em;
-    color: var(--msi-red);
+    color: #FF0000; /* Unified MSI Red theme */
 }
 
 .metric-label {
-    font-size: 0.75rem;
+    font-size: 0.75rem; /* Shrunk back to 12px to prevent text wrapping */
     font-weight: 500;
     color: var(--text-secondary);
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
 }
 
 .card-footer {
@@ -701,3 +702,84 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* Custom Tooltip Styling */
+.custom-tooltip {
+    background: rgba(17, 17, 17, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    border-radius: 2px;
+    padding: 0.75rem 1rem;
+    font-family: 'Inter', sans-serif;
+    min-width: 180px;
+    color: #FFFFFF;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Light Mode Override for Tooltip */
+html[data-theme="light"] .custom-tooltip {
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    color: #000000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.tooltip-header {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 0.25rem;
+    letter-spacing: 0.05em;
+}
+
+.tooltip-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.tooltip-row {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.tooltip-row .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 8px;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.tooltip-row .label {
+    flex: 1;
+    color: var(--text-secondary);
+}
+
+.tooltip-row .value {
+    font-weight: 700;
+    margin-left: 8px;
+}
+
+.total-row {
+    font-weight: 700;
+    font-size: 0.8rem;
+    margin-bottom: 0.15rem;
+}
+
+.total-row .dot {
+    background-color: var(--msi-red);
+}
+
+.tooltip-divider {
+    height: 1px;
+    background-color: var(--border-subtle);
+    margin: 0.25rem 0;
+}
+
